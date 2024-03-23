@@ -5,10 +5,35 @@ function selectFromWhereBasic() {
     var dec_min = document.getElementById("dec_min").value;
     var dec_max = document.getElementById("dec_max").value;
     var table = document.getElementById("table").value;
+    var galaxiesChecked = document.getElementById("galaxies").checked;
+    var starsChecked = document.getElementById("stars").checked;
+    var excludeUnknownChecked = document.getElementById("excludeUnknown").checked;
+
+    var objectTypes = [];
+    if (galaxiesChecked) {
+        objectTypes.push("type = 3"); // Galaxy
+    }
+    if (starsChecked) {
+        objectTypes.push("type = 6"); // Star
+    }
+    if (excludeUnknownChecked) {
+        objectTypes.push("type != 0"); // Exclude unknown objects
+    }
+
+    var objectTypeCondition = "";
+    if (objectTypes.length > 0) {
+        objectTypeCondition = "(" + objectTypes.join(" OR ") + ")";
+    } else {
+        // No checkbox is checked, return empty query
+        document.getElementById("query").innerHTML = "No checkbox is checked. Please select at least one checkbox.";
+        return;
+    }
 
     var query = "SELECT TOP " + num + " objID, ra, dec FROM " + table +
         " WHERE ra > " + ra_min + " and ra < " + ra_max +
         " AND dec > " + dec_min + " and dec < " + dec_max;
+    
+    query += " AND " + objectTypeCondition;
 
     document.getElementById("query").innerHTML = query;
 
