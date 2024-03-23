@@ -48,6 +48,6 @@ nav ul li a {
   
   .card img {
     width: auto; /* Make the image fill the container */
-    height: auto; /* Maintain aspect ratio */
+    height: auto; 
 
   }
