@@ -1,7 +1,7 @@
 
 body {
-    font-family: Dosis;
-    margin: 0;
+    font-family: 'Trebuchet MS', sans-serif;
+    margin: 20px;
     padding: 0;
     background-color: #ffdeef;
 }
@@ -25,3 +25,29 @@ nav ul li a {
     text-decoration: none;
 }
 
+.nav-link:hover {
+    background-color: #555;
+    color: white;
+}
+
+
+.bios {
+    display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Create two columns */
+    gap: 20px; /* Space between items */
+    margin: 0 auto;
+    max-width: 800px;
+  }
+  
+  .card img {
+    width: auto; /* Make the image fill the container */
+    height: auto; 
+
+  }
