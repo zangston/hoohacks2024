@@ -19,7 +19,7 @@ function selectFromWhereBasic() {
 }
 
 function querySDSSApi(query, outputFormat) {
-    var url = 'http://skyserver.sdss.org/dr16/SkyServerWS/SearchTools/SqlSearch?cmd=' + encodeURIComponent(query);
+    var url = 'https://skyserver.sdss.org/dr18/SkyServerWS/SearchTools/SqlSearch?cmd=' + encodeURIComponent(query);
     
     fetch(url)
         .then(response => {
