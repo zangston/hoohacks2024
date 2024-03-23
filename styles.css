@@ -1,7 +1,7 @@
 
 body {
     font-family: 'Trebuchet MS', sans-serif;
-    margin: 0;
+    margin: 20px;
     padding: 0;
     background-color: #ffdeef;
 }
@@ -16,6 +16,7 @@ footer {
     background-color: #333;
     color: #fff;
     padding: 10px 20px;
+    margin: 0;
 }
 
 li {
@@ -74,7 +75,6 @@ nav ul li a {
     color: white;
 }
 
-
 .bios {
     display: flex;
   flex-wrap: wrap;
@@ -82,13 +82,20 @@ nav ul li a {
   text-align: center;
 }
 
+.about-section {
+    margin: 20px;
+}
+
 .row {
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* Create two columns */
     gap: 20px; /* Space between items */
+    margin: 0 auto;
+    max-width: 800px;
   }
   
   .card img {
-    width: 100%; /* Make the image fill the container */
-    height: auto; /* Maintain aspect ratio */
+    width: auto; /* Make the image fill the container */
+    height: auto; 
+
   }

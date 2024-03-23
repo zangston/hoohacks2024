@@ -1,20 +1,49 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Sloan Digital Sky Survey Software Solution For Simplified SQL (SDSSSSSS)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <li><a style="text-decoration:none" href="index.html" class="nav-link">Home</a></li>
+        <li><a style="text-decoration:none" href="about.html" class="nav-link">About</a></li>
+      </nav>
+<h1> Sloan Digital Sky Survey Software Solution For Simplified SQL </h1>
+</body>
+<body>
+<form id="queryParameter">
+    <label for="num">Number:</label>
+    <input type="number" id="num" name="num"><br><br>
 
-<html>
-    <head>
-        <title>Sloan Digital Sky Survey Software Solution For Simplified SQL</title>
-        <link rel="stylesheet" href="styles.css">
-    </head>
-    <body>
-        <nav class="navbar">
-            <li><a style="text-decoration:none" href="index.html" class="nav-link">Home</a></li>
-            <li><a style="text-decoration:none" href="about.html" class="nav-link">About</a></li>
-          </nav>
-        <h1> Sloan Digital Sky Survey Software Solution For Simplified SQL </h1>
-    </body>
-    <footer class="footer mt-4 mb-4">
-        <div class="container text-center">
-          <span class="text-muted">&copy; 2024. All rights reserved. FOOTER FOOTER FOOTER. </span>
-        </div>
-      </footer>
+    <label for="ra_min">Right Ascension (min):</label>
+    <input type="number" id="ra_min" name="ra_min"><br><br>
+
+    <label for="ra_max">Right Ascension (max):</label>
+    <input type="number" id="ra_max" name="ra_max"><br><br>
+
+    <label for="dec_min">Declination (min):</label>
+    <input type="number" id="dec_min" name="dec_min"><br><br>
+
+    <label for="dec_max">Declination (max):</label>
+    <input type="number" id="dec_max" name="dec_max"><br><br>
+
+    <label for="table">Table:</label>
+    <input type="text" id="table" name="table"><br><br>
+
+    <label>Output Format:</label>
+    <input type="radio" id="htmlOutput" name="outputFormat" value="html" checked>
+    <label for="htmlOutput">HTML</label>
+    <input type="radio" id="csvOutput" name="outputFormat" value="csv">
+    <label for="csvOutput">CSV</label><br><br>
+
+    <input type="button" value="Submit" onclick="selectFromWhereBasic()">
+</form>
+
+<div id="query"></div>
+
+<div id="apiResponse"></div>
+
+<script src="script.js"></script>
+</body>
 </html>
