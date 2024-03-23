@@ -41,8 +41,36 @@ function querySDSSApi(query, outputFormat) {
         });
 }
 
-function downloadCSV(csvData) {
-    var blob = new Blob([csvData], { type: 'text/csv' });
+function downloadCSV(jsonData) {
+    // Parse the JSON response
+    var data = JSON.parse(jsonData);
+
+    // Extract rows of data
+    var rows = [];
+    for (var i = 0; i < data.length; i++) {
+        var tableName = data[i].TableName;
+        var tableRows = data[i].Rows;
+        for (var j = 0; j < tableRows.length; j++) {
+            rows.push(tableRows[j]);
+        }
+    }
+
+    // Extract columns and build CSV string
+    var csv = '';
+    if (rows.length > 0) {
+        var columns = Object.keys(rows[0]);
+        csv += columns.join(',') + '\n';
+        for (var i = 0; i < rows.length; i++) {
+            var row = [];
+            for (var j = 0; j < columns.length; j++) {
+                row.push(rows[i][columns[j]]);
+            }
+            csv += row.join(',') + '\n';
+        }
+    }
+
+    // Download the CSV file
+    var blob = new Blob([csv], { type: 'text/csv' });
     var url = window.URL.createObjectURL(blob);
     var a = document.createElement('a');
     a.href = url;
