@@ -1,6 +1,6 @@
 
 body {
-    font-family: Dosis, sans-serif ;
+    font-family: 'Trebuchet MS', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #ffdeef;
@@ -18,9 +18,26 @@ footer {
     padding: 10px 20px;
 }
 
+li {
+    display: inline;
+    float: left;
+}
+  
+/* a {
+    display: block;
+    padding: 8px;
+    background-color: #fff;
+} */
+
 nav {
     background-color: #fff;
-    padding: 10px 20px;
+    /* padding: 10px 20px; */
+
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    /* background-color: #dddddd; */
 }
 
 nav ul {
@@ -36,3 +53,42 @@ nav ul li a {
     text-decoration: none;
 }
 
+.nav-item {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.nav-link {
+    display: block;
+    padding: 8px;
+    background-color: #fff;
+}
+
+.nav-link:hover {
+    background-color: #faa0cf;
+    color: white;
+}
+
+
+.bios {
+    display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Create two columns */
+    gap: 20px; /* Space between items */
+  }
+  
+  .card img {
+    width: 100%; /* Make the image fill the container */
+    height: auto; /* Maintain aspect ratio */
+  }
