@@ -20,7 +20,7 @@ function selectFromWhereBasic() {
 
 function querySDSSApi(query, outputFormat) {
     var url = 'https://skyserver.sdss.org/dr18/SkyServerWS/SearchTools/SqlSearch?cmd=' + encodeURIComponent(query);
-    
+
     fetch(url)
         .then(response => {
             if(!response.ok) {
@@ -29,10 +29,15 @@ function querySDSSApi(query, outputFormat) {
             return response.text();
         })
         .then(data => {
+            // Display the JSON string
+            document.getElementById("apiResponse").innerText = data;
+
             if (outputFormat === 'csv') {
                 downloadCSV(data);
             } else {
-                document.getElementById("apiResponse").innerHTML = data;
+                // Display the table
+                var tableHtml = createTableFromJson(data);
+                document.getElementById("apiResponseTable").innerHTML = tableHtml;
             }
         })
         .catch(error => {
@@ -40,6 +45,7 @@ function querySDSSApi(query, outputFormat) {
             document.getElementById("apiResponse").innerHTML = "Error: " + error;
         });
 }
+
 
 function downloadCSV(jsonData) {
     // Parse the JSON response
@@ -79,4 +85,38 @@ function downloadCSV(jsonData) {
     a.click();
     document.body.removeChild(a);
     window.URL.revokeObjectURL(url);
+}
+
+function createTableFromJson(jsonData) {
+    jsonData = JSON.parse(jsonData)
+    var html = "";
+
+    jsonData.forEach(table => {
+        html += "<h3>" + table.TableName + "</h3>";
+        html += "<table border='1'>";
+        var columnSet = [];
+
+        if (table.Rows.length > 0) {
+            html += "<tr>";
+            for (var key in table.Rows[0]) {
+                if (table.Rows[0].hasOwnProperty(key) && columnSet.indexOf(key) === -1) {
+                    columnSet.push(key);
+                    html += "<th>" + key + "</th>";
+                }
+            }
+            html += "</tr>";
+        }
+
+        table.Rows.forEach(row => {
+            html += "<tr>";
+            columnSet.forEach(column => {
+                html += "<td>" + row[column] + "</td>";
+            });
+            html += "</tr>";
+        });
+
+        html += "</table><br>";
+    });
+
+    return html;
 }
