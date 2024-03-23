@@ -1,7 +1,7 @@
 
 body {
     font-family: 'Trebuchet MS', sans-serif;
-    margin: 20px;
+    margin: 0;
     padding: 0;
     background-color: #ffdeef;
 }
@@ -13,7 +13,7 @@ header {
 }
 
 footer {
-    background-color: #333;
+    background-color: #faa0cf;
     color: #fff;
     padding: 10px 20px;
     margin: 0;
