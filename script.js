@@ -29,10 +29,10 @@ function querySDSSApi(query, outputFormat) {
             return response.text();
         })
         .then(data => {
-            // Display the JSON string
-            document.getElementById("apiResponse").innerText = data;
-
-            if (outputFormat === 'csv') {
+            if(outputFormat === 'json'){
+                document.getElementById("apiResponse").innerText = data;
+            }
+            else if (outputFormat === 'csv') {
                 downloadCSV(data);
             } else {
                 // Display the table

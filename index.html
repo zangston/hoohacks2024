@@ -32,10 +32,12 @@
     <input type="text" id="table" name="table"><br><br>
 
     <label>Output Format:</label>
-    <input type="radio" id="htmlOutput" name="outputFormat" value="html" checked>
-    <label for="htmlOutput">HTML</label>
+    <input type="radio" id="tableOutput" name="outputFormat" value="table" checked>
+    <label for="tableOutput">Table</label>
     <input type="radio" id="csvOutput" name="outputFormat" value="csv">
-    <label for="csvOutput">CSV</label><br><br>
+    <label for="csvOutput">CSV</label>
+    <input type="radio" id="jsonOutput" name="outputFormat" value="json">
+    <label for="jsonOutput">JSON</label><br><br>
 
     <input type="button" value="Submit" onclick="selectFromWhereBasic()">
 </form>
