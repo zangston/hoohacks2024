@@ -98,7 +98,6 @@ nav ul li a {
 }
 
 
-
 .row {
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* Create two columns */
