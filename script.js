@@ -17,7 +17,7 @@ function selectFromWhereBasic() {
 
 function querySDSSApi(query) {
 
-    fetch('http://skyserver.sdss.org/dr16/SkyServerWS/SearchTools/SqlSearch?cmd=' + encodeURIComponent(query))
+    fetch('https://skyserver.sdss.org/dr18/SkyServerWS/SearchTools/SqlSearch?cmd=' + encodeURIComponent(query))
         .then(response => response.json())
         .then(data => {
             console.log(data);
