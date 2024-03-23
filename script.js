@@ -12,19 +12,43 @@ function selectFromWhereBasic() {
 
     document.getElementById("query").innerHTML = query;
 
-    querySDSSApi(query);
+    // Radio button selection for output type (HTML or CSV)
+    var outputFormat = document.querySelector('input[name="outputFormat"]:checked').value;
+
+    querySDSSApi(query, outputFormat);
 }
 
-function querySDSSApi(query) {
-
-    fetch('http://skyserver.sdss.org/dr16/SkyServerWS/SearchTools/SqlSearch?cmd=' + encodeURIComponent(query))
-        .then(response => response.json())
+function querySDSSApi(query, outputFormat) {
+    var url = 'http://skyserver.sdss.org/dr16/SkyServerWS/SearchTools/SqlSearch?cmd=' + encodeURIComponent(query);
+    
+    fetch(url)
+        .then(response => {
+            if(!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
         .then(data => {
-            console.log(data);
-            document.getElementById("apiResponse").innerHTML = JSON.stringify(data, null, 2);
+            if (outputFormat === 'csv') {
+                downloadCSV(data);
+            } else {
+                document.getElementById("apiResponse").innerHTML = data;
+            }
         })
         .catch(error => {
             console.error('Error making the API call:', error);
             document.getElementById("apiResponse").innerHTML = "Error: " + error;
         });
+}
+
+function downloadCSV(csvData) {
+    var blob = new Blob([csvData], { type: 'text/csv' });
+    var url = window.URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'sdss_data.csv';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
 }
