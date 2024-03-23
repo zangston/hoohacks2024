@@ -9,6 +9,15 @@ function selectFromWhereBasic() {
     var starsChecked = document.getElementById("stars").checked;
     var excludeUnknownChecked = document.getElementById("excludeUnknown").checked;
 
+    var magnitudeChecked = document.getElementById("magnitude").checked;
+    var fluxChecked = document.getElementById("flux").checked;
+
+    var uChecked = document.getElementById("u").checked;
+    var gChecked = document.getElementById("g").checked;
+    var rChecked = document.getElementById("r").checked;
+    var iChecked = document.getElementById("i").checked;
+    var zChecked = document.getElementById("z").checked;
+
     var objectTypes = [];
     if (galaxiesChecked) {
         objectTypes.push("type = 3"); // Galaxy
@@ -29,7 +38,31 @@ function selectFromWhereBasic() {
         return;
     }
 
-    var query = "SELECT TOP " + num + " objID, ra, dec FROM " + table +
+    var filters = [];
+    if (uChecked) {
+        if (magnitudeChecked) filters.push("psfMag_u");
+        if (fluxChecked) filters.push("psfFlux_u");
+    }
+    if (gChecked) {
+        if (magnitudeChecked) filters.push("psfMag_g");
+        if (fluxChecked) filters.push("psfFlux_g");
+    }
+    if (rChecked) {
+        if (magnitudeChecked) filters.push("psfMag_r");
+        if (fluxChecked) filters.push("psfFlux_r");
+    }
+    if (iChecked) {
+        if (magnitudeChecked) filters.push("psfMag_i");
+        if (fluxChecked) filters.push("psfFlux_i");
+    }
+    if (zChecked) {
+        if (magnitudeChecked) filters.push("psfMag_z");
+        if (fluxChecked) filters.push("psfFlux_z");
+    }
+
+    var selectedFilters = filters.join(", ");
+
+    var query = "SELECT TOP " + num + " objID, ra, dec " + selectedFilters + " FROM " + table +
         " WHERE ra > " + ra_min + " and ra < " + ra_max +
         " AND dec > " + dec_min + " and dec < " + dec_max;
     
